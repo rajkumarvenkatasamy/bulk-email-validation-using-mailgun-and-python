@@ -14,7 +14,6 @@ logging.basicConfig(
 )
 
 
-# Function to create a bulk validation job
 def create_bulk_validation_job(list_name, file_path):
     """
     This function creates a bulk validation job using the Mailgun API.
@@ -47,13 +46,12 @@ def create_bulk_validation_job(list_name, file_path):
         return None
 
 
-# Function to check the status of a validation job
 def get_bulk_validation_status(list_name):
     """
     This function checks the status of a bulk validation job and downloads the validation results.
 
     :param list_name: The name of the mailing list for which the status is being checked.
-    :return: Validation summary or None in case of failure.
+    :return: Validation results or None in case of failure.
     """
     url = f"{MAILGUN_API_URL}/{list_name}"
 
@@ -90,7 +88,6 @@ def get_bulk_validation_status(list_name):
         return None
 
 
-# Function to download validation results
 def download_validation_results(download_url):
     """
     This function downloads and processes the bulk validation results from the provided URL.
@@ -135,7 +132,6 @@ def download_validation_results(download_url):
         return None
 
 
-# Function to process and analyze validation results
 def process_validation_results(results):
     """
     This function processes the validation results and handles invalid and risky emails.
@@ -190,10 +186,8 @@ def process_validation_results(results):
 if __name__ == "__main__":
 
     if COMMAND == "submit_job":
-        # Step 1: Create a bulk validation job
         create_bulk_validation_job(LIST_NAME, FILE_PATH)
     elif COMMAND == "get_job_status":
-        # Step 2: Check the job status and process results
         get_bulk_validation_status(LIST_NAME)
     else:
         logging.error("Invalid command. Please use 'submit_job' or 'get_job_status'.")
