@@ -25,7 +25,7 @@ def create_bulk_validation_job(list_name, file_path):
     url = f"{MAILGUN_API_URL}/{list_name}"
 
     try:
-        # Sending a POST request with the file to Mailgun's API
+        # Send a POST request with the file to Mailgun's API
         with open(file_path, "rb") as file_data:
             response = requests.post(
                 url, auth=("api", API_KEY), files={"file": file_data}
@@ -56,7 +56,7 @@ def get_bulk_validation_status(list_name):
     url = f"{MAILGUN_API_URL}/{list_name}"
 
     try:
-        # Sending a GET request to Mailgun's API to fetch the job status
+        # Send a GET request to Mailgun's API to fetch the job status
         response = requests.get(url, auth=("api", API_KEY))
 
         # Check if the request was successful
@@ -146,7 +146,7 @@ def process_validation_results(results):
         logging.info(f"Total email addresses validated: {len(results)}")
 
         for result in results:
-            # Accessing data within each dictionary
+            # Access data within each dictionary
             deliverable = (
                 result["result"] == "deliverable"
             )  # Check if result is deliverable
